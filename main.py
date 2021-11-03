@@ -7,7 +7,7 @@ def deckgenerator():
     for i in range(6): #Ennyi gyümölcs van
         for j in range(5): #Számozás
             for k in range(4): # Mindegyik kártyából ennyi van
-                actual = fruits[i] + ' ' + str(j)
+                actual = fruits[i] + ' ' + str(j+1)
                 deck.append(actual)
     return deck
 
