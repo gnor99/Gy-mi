@@ -13,6 +13,13 @@ def deckgenerator():
                 deck.append(fruits[i] + ' ' + str(j+1)) #létrehoz egy kátyát úgy hogy elöször szerepel a gyümölcs és utána hogy hányas számú a kártya
 
     random.shuffle(deck) #megkeveri a kártyákat
+    print(len(deck))
+
+    for i in range(39):
+        deck.pop(0)
+
+    print(len(deck))
+
 
     return deck
 
@@ -22,6 +29,9 @@ def draw(deck):
     a = deck.pop(0) #kiveszi az elso kartyát a paklibol aka huz egy lapot
 
     return a
+
+
+
 
 
 def main():
