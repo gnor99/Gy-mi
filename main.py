@@ -54,12 +54,29 @@ def putinstack(card, applestack, grapesstack, strawberrystack, peachstack, plums
     elif card[:4] == "pear" :
         pearstack.append(card)
 
-    print(applestack)
-    print(grapesstack)
-    print(strawberrystack)
-    print(peachstack)
-    print(plumstack)
-    print(pearstack)
+    printstacks(applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack)
+
+
+def printstacks(applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack):
+    #kiíratja a stackek legfelső elemét és hogy ennyi elem van bennük ha nem üresek
+    
+    if applestack != []:
+        print(applestack[0] + " number of cards in stack:" + str(len(applestack)))
+    
+    if grapesstack != []:
+        print(grapesstack[0] + " number of cards in stack:" + str(len(grapesstack)))
+    
+    if strawberrystack != []:
+        print(strawberrystack[0] + " number of cards in stack:" + str(len(strawberrystack)))
+    
+    if peachstack != []:
+        print(peachstack[0] + " number of cards in stack:" + str(len(peachstack)))
+    
+    if plumstack != []:
+        print(plumstack[0] + " number of cards in stack:" + str(len(plumstack)))
+    
+    if pearstack != []:
+        print(pearstack[0] + " number of cards in stack:" + str(len(pearstack)))
 
 
 
