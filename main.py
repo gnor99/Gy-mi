@@ -11,11 +11,15 @@ def deckgenerator():
     return deck
 
 
+def draw(deck):
+    a = deck.pop(0) #kiveszi az elso kartyát a paklibol aka huz egy lapot
+    return a
+
 
 def main():
     deck = deckgenerator()
     random.shuffle(deck) #megkeveri a kártyákat
-    print(deck) 
+    print(draw(deck)) 
 
 
 if __name__ == "__main__":
