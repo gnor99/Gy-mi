@@ -27,8 +27,8 @@ def choose(left, right):
     #a két felhuzzpt lapból választani kell egyet amit megtarunk, a másikat eldobjuk
     print("type left if you want this card: " + left + '\n' + "type right if you want this card: " +  right)
     
-
-    while input() != "left" or input() !="right":
+    inp = ""
+    while inp != "left" or inp !="right":
         inp = input()
 
         if inp == "left":
@@ -36,7 +36,31 @@ def choose(left, right):
 
         elif inp == "right":
             return right
-    
+    print("while vege")
+
+def putinstack(card, applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack):
+    #ez belerakja a kiválasztott kártyákat a tárolokba majd kiírja azokat
+
+    if card[:4] == "appl" :
+        applestack.append(card)
+    elif card[:4] == "grap" :
+        grapesstack.append(card)
+    elif card[:4] == "stra" :
+        strawberrystack.append(card)
+    elif card[:4] == "peac" :
+        peachstack.append(card)
+    elif card[:4] == "plum" :
+        plumstack.append(card)
+    elif card[:4] == "pear" :
+        pearstack.append(card)
+
+    print(applestack)
+    print(grapesstack)
+    print(strawberrystack)
+    print(peachstack)
+    print(plumstack)
+    print(pearstack)
+
 
 
 def draw(deck1, deck2):
@@ -47,21 +71,20 @@ def draw(deck1, deck2):
 
     return choosen
 
-def stackgenerator(): #létrehozza a különböző tárolokat 
-    #ezek a gyümölcs paklik
-    
-    appledeck = [] 
-    grapesdeck = []
-    strawberrydeck = []
-    peachdeck = []
-    plumdeck = []
-    peardeck = []
-
 
 def main():
     deck1,deck2 = deckgenerator()
-    stackgenerator()
-    print(draw(deck1,deck2)) 
+
+    applestack = [] 
+    grapesstack = []
+    strawberrystack = []
+    peachstack = []
+    plumstack = []
+    pearstack = []
+
+    while deck1 != 0 and deck2 != 0:
+        card = draw(deck1,deck2)
+        putinstack(card, applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack) 
 
 
 
