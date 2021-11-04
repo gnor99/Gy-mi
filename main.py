@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
- 
+import random
      
 def deckgenerator():
     fruits = ['apple','grapes', 'strawberry', 'peach', 'plum', 'pear']
@@ -7,13 +7,14 @@ def deckgenerator():
     for i in range(6): #Ennyi gyümölcs van
         for j in range(5): #Számozás
             for k in range(4): # Mindegyik kártyából ennyi van
-                actual = fruits[i] + ' ' + str(j+1)
-                deck.append(actual)
+                deck.append(fruits[i] + ' ' + str(j+1))
     return deck
+
 
 
 def main():
     deck = deckgenerator()
+    random.shuffle(deck) #megkeveri a kártyákat
     print(deck) 
 
 
