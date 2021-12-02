@@ -158,6 +158,11 @@ class Ui_MainWindow(object):
         self.Button2.setObjectName("Button2")
         self.Button2.clicked.connect(lambda: self.putinstack(self.right_deck, self.left_deck, applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack))
 
+        self.Button3 = QtWidgets.QPushButton(self.centralwidget)
+        self.Button3.setGeometry(QtCore.QRect(450, 320, 151, 25))
+        self.Button3.setObjectName("Button3")
+        self.Button3.clicked.connect(lambda: self.discard(self.left_deck, self.right_deck))
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1147, 22))
@@ -185,6 +190,7 @@ class Ui_MainWindow(object):
         self.label_6.setText(_translate("MainWindow", "Pear"))
         self.Button1.setText(_translate("MainWindow", "Draw from this deck"))
         self.Button2.setText(_translate("MainWindow", "Draw from this deck"))
+        self.Button3.setText(_translate("MainWindow", "Discard both card"))
         self.counter_label_1.setText(_translate("MainWindow", "Size of this deck is 0"))
         self.counter_label_2.setText(_translate("MainWindow", "Size of this deck is 0"))
         self.counter_label_3.setText(_translate("MainWindow", "Size of this deck is 0"))
@@ -368,6 +374,7 @@ class Ui_MainWindow(object):
             self.peachlabel.hide()
             self.Button1.hide()
             self.Button2.hide()
+            self.Button3.hide()
             self.label_1.hide()
             self.label_2.hide()
             self.label_3.hide()
@@ -380,6 +387,21 @@ class Ui_MainWindow(object):
             self.counter_label_4.hide()
             self.counter_label_5.hide()
             self.counter_label_6.hide()
+
+    def discard(self, choosendeck, otherdeck):
+        print(len(choosendeck))
+
+        
+        choosendeck.pop(0)
+        otherdeck.pop(0)
+
+        if len(choosendeck) != 0:
+            self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
+            self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
+        else:
+            self.deck1.setPixmap(QtGui.QPixmap("cards/empty.png"))
+            self.deck2.setPixmap(QtGui.QPixmap("cards/empty.png"))
+            self.pop_up_end()
 
 
 
