@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox
 
 import random
 
@@ -116,15 +117,48 @@ class Ui_MainWindow(object):
         self.label_6.setAlignment(QtCore.Qt.AlignCenter)
         self.label_6.setObjectName("label_6")
 
+
+        self.counter_label_1 = QtWidgets.QLabel(self.centralwidget)
+        self.counter_label_1.setGeometry(QtCore.QRect(40, 650, 140, 17))
+        self.counter_label_1.setAlignment(QtCore.Qt.AlignCenter)
+        self.counter_label_1.setObjectName("counter_label_1")
+
+        self.counter_label_2 = QtWidgets.QLabel(self.centralwidget)
+        self.counter_label_2.setGeometry(QtCore.QRect(215, 650, 140, 17))
+        self.counter_label_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.counter_label_2.setObjectName("counter_label_2")
+        
+        self.counter_label_3 = QtWidgets.QLabel(self.centralwidget)
+        self.counter_label_3.setGeometry(QtCore.QRect(390, 650, 140, 17))
+        self.counter_label_3.setAlignment(QtCore.Qt.AlignCenter)
+        self.counter_label_3.setObjectName("counter_label_3")
+
+        self.counter_label_4 = QtWidgets.QLabel(self.centralwidget)
+        self.counter_label_4.setGeometry(QtCore.QRect(570, 650, 140, 17))
+        self.counter_label_4.setAlignment(QtCore.Qt.AlignCenter)
+        self.counter_label_4.setObjectName("counter_label_4")
+
+        self.counter_label_5 = QtWidgets.QLabel(self.centralwidget)
+        self.counter_label_5.setGeometry(QtCore.QRect(755, 650, 140, 17))
+        self.counter_label_5.setAlignment(QtCore.Qt.AlignCenter)
+        self.counter_label_5.setObjectName("counter_label_5")
+
+        self.counter_label_6 = QtWidgets.QLabel(self.centralwidget)
+        self.counter_label_6.setGeometry(QtCore.QRect(935, 650, 140, 17))
+        self.counter_label_6.setAlignment(QtCore.Qt.AlignCenter)
+        self.counter_label_6.setObjectName("counter_label_6")        
+
         self.Button1 = QtWidgets.QPushButton(self.centralwidget)
         self.Button1.setGeometry(QtCore.QRect(200, 320, 151, 25))
         self.Button1.setObjectName("Button1")
-        self.Button1.clicked.connect(lambda: self.putinstack(self.left_deck, self.right_deck, applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack))
+        if len(self.left_deck) != 0:
+            self.Button1.clicked.connect(lambda: self.putinstack(self.left_deck, self.right_deck, applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack))
 
         self.Button2 = QtWidgets.QPushButton(self.centralwidget)
         self.Button2.setGeometry(QtCore.QRect(690, 320, 151, 25))
         self.Button2.setObjectName("Button2")
-        self.Button2.clicked.connect(lambda: self.putinstack(self.right_deck, self.left_deck, applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack))
+        if len(self.left_deck) != 0:
+            self.Button2.clicked.connect(lambda: self.putinstack(self.right_deck, self.left_deck, applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack))
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -142,9 +176,6 @@ class Ui_MainWindow(object):
 
 
 
-
-        #self.putinstack(applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack) 
-
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -156,8 +187,13 @@ class Ui_MainWindow(object):
         self.label_6.setText(_translate("MainWindow", "Pear"))
         self.Button1.setText(_translate("MainWindow", "Draw from this deck"))
         self.Button2.setText(_translate("MainWindow", "Draw from this deck"))
+        self.counter_label_1.setText(_translate("MainWindow", "Size of this deck is 0"))
+        self.counter_label_2.setText(_translate("MainWindow", "Size of this deck is 0"))
+        self.counter_label_3.setText(_translate("MainWindow", "Size of this deck is 0"))
+        self.counter_label_4.setText(_translate("MainWindow", "Size of this deck is 0"))
+        self.counter_label_5.setText(_translate("MainWindow", "Size of this deck is 0"))
+        self.counter_label_6.setText(_translate("MainWindow", "Size of this deck is 0"))
 
-    #def clicked(self, button):
 
 
     def deckgenerator(self):
@@ -192,40 +228,122 @@ class Ui_MainWindow(object):
         card = choosendeck[0]
 
         if card[:4] == "appl" :
-            applestack.append(card)
-            self.applelabel.setPixmap(QtGui.QPixmap("cards/" +  applestack[0] +".png"))
+            
+            if len(applestack) == 5 :
+                self.pop_up_message("Alma", choosendeck, otherdeck, applestack, card, self.applelabel, self.counter_label_1)
+
+            else:
+                applestack.append(card)
+                self.applelabel.setPixmap(QtGui.QPixmap("cards/" +  applestack[-1] +".png"))
+                self.counter_label_1.setText( "Size of this deck is " + str(len(applestack)))
+                
+                choosendeck.pop(0)
+                otherdeck.pop(0)
+
+                self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
+                self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
+
         elif card[:4] == "grap" :
-            grapesstack.append(card)
-            self.grapeslabel.setPixmap(QtGui.QPixmap("cards/" +  grapesstack[0] +".png"))
+            if len(grapesstack) == 5 :
+                self.pop_up_message("Szőlő", choosendeck, otherdeck,  grapesstack,  card, self.grapeslabel, self.counter_label_3)
+
+            else:
+                grapesstack.append(card)
+                self.grapeslabel.setPixmap(QtGui.QPixmap("cards/" +  grapesstack[-1] +".png"))
+                self.counter_label_3.setText( "Size of this deck is " + str(len(grapesstack)))
+
+                choosendeck.pop(0)
+                otherdeck.pop(0)
+
+                self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
+                self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
+        
         elif card[:4] == "stra" :
-            strawberrystack.append(card)
-            self.strawberrylabel.setPixmap(QtGui.QPixmap("cards/" +  strawberrystack[0] +".png"))
+            if len(strawberrystack) == 5 :
+                self.pop_up_message("Eper" , choosendeck, otherdeck,  strawberrystack,  card, self.strawberrylabel, self.counter_label_4)
+
+            else:
+                strawberrystack.append(card)
+                self.strawberrylabel.setPixmap(QtGui.QPixmap("cards/" +  strawberrystack[-1] +".png"))
+                self.counter_label_4.setText("Size of this deck is " + str(len(strawberrystack)))
+
+                choosendeck.pop(0)
+                otherdeck.pop(0)
+
+                self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
+                self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
+            
         elif card[:4] == "peac" :
-            peachstack.append(card)
-            self.peachlabel.setPixmap(QtGui.QPixmap("cards/" +  peachstack[0] +".png"))
+            if len(peachstack) == 5:
+                self.pop_up_message("Barack", choosendeck, otherdeck,  peachstack,  card, self.peachlabel, self.counter_label_2)
+
+            else:
+                peachstack.append(card)
+                self.peachlabel.setPixmap(QtGui.QPixmap("cards/" +  peachstack[-1] +".png"))
+                self.counter_label_2.setText( "Size of this deck is " + str(len(peachstack)))
+
+                choosendeck.pop(0)
+                otherdeck.pop(0)
+
+                self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
+                self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
+            
         elif card[:4] == "plum" :
-            plumstack.append(card)
-            self.plumlabel.setPixmap(QtGui.QPixmap("cards/" +  plumstack[0] +".png"))
+            if len(plumstack) == 5:
+                self.pop_up_message("Szilva", choosendeck, otherdeck, plumstack, card, self.plumlabel, self.counter_label_5)
+
+            else:
+                plumstack.append(card)
+                self.plumlabel.setPixmap(QtGui.QPixmap("cards/" +  plumstack[-1] +".png"))
+                self.counter_label_5.setText( "Size of this deck is " + str(len(plumstack)))
+
+                choosendeck.pop(0)
+                otherdeck.pop(0)
+
+                self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
+                self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
+        
         elif card[:4] == "pear" :
-            pearstack.append(card)
-            self.pearlabel.setPixmap(QtGui.QPixmap("cards/" +  pearstack[0] +".png"))
+            if len(pearstack) == 5:
+                self.pop_up_message("Körte", choosendeck, otherdeck, pearstack, card, self.pearlabel, self.counter_label_6)
 
-        choosendeck.pop(0)
-        otherdeck.pop(0)
+            else:             
+                pearstack.append(card)
+                self.pearlabel.setPixmap(QtGui.QPixmap("cards/" +  pearstack[-1] +".png"))
+                self.counter_label_6.setText( "Size of this deck is " + str(len(pearstack)))
 
-        self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
-        self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
+                choosendeck.pop(0)
+                otherdeck.pop(0)
 
-        """
-    def draw(self, left_deck, right_deck):
-            first = self.left_deck.pop(0) #kiveszi az elso kartyát az elsö paklibol aka huz egy lapot
-   
-
-            sec = self.right_deck.pop(0) #kiveszi az elso kartyát a masodik paklibol aka huz egy lapot
+                self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
+                self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
 
 
-        return first, sec
-        """
+    def pop_up_message(self, fruit,  choosendeck, otherdeck, stack, card, fruitlabel, counter_label):
+        msg = QMessageBox()
+        msg.setWindowTitle("Válassz okosan")
+        msg.setText(fruit + " gyümölcs nem választható mert a pakliban van már 5 lap")
+        msg.setIcon(QMessageBox.Information)
+        msg.setStandardButtons(QMessageBox.Retry|QMessageBox.Ok)
+
+
+        x = msg.exec_()
+
+        if x == QMessageBox.Retry:
+            pass
+
+        else: 
+            stack.append(card)
+            fruitlabel.setPixmap(QtGui.QPixmap("cards/" +  stack[-1] +".png"))
+            counter_label.setText( "Size of this deck is " + str(len(stack)))
+
+            choosendeck.pop(0)
+            otherdeck.pop(0)
+
+            self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
+            self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
+
+ 
 
 if __name__ == "__main__":
     import sys
