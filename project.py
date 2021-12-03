@@ -7,7 +7,8 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-
+from score import Ui_ScoreWindow
+import score
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 
@@ -25,6 +26,8 @@ class Ui_MainWindow(object):
         peachstack = []
         plumstack = []
         pearstack = []
+
+        MainWindow.setWindowIcon(QtGui.QIcon("cards/icon.png"))
 
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -161,7 +164,7 @@ class Ui_MainWindow(object):
         self.Button3 = QtWidgets.QPushButton(self.centralwidget)
         self.Button3.setGeometry(QtCore.QRect(450, 320, 151, 25))
         self.Button3.setObjectName("Button3")
-        self.Button3.clicked.connect(lambda: self.discard(self.left_deck, self.right_deck))
+        self.Button3.clicked.connect(lambda: self.discard(self.left_deck, self.right_deck, applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack))
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -245,13 +248,13 @@ class Ui_MainWindow(object):
                     
                     choosendeck.pop(0)
                     otherdeck.pop(0)
-                    if choosendeck:
-                        self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
-                        self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
-                    else:
-                        self.deck1.setPixmap(QtGui.QPixmap("cards/empty.png"))
-                        self.deck2.setPixmap(QtGui.QPixmap("cards/empty.png"))
-                        self.pop_up_end()
+                if choosendeck:
+                    self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
+                    self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
+                else:
+                    self.deck1.setPixmap(QtGui.QPixmap("cards/empty.png"))
+                    self.deck2.setPixmap(QtGui.QPixmap("cards/empty.png"))
+                    self.pop_up_end(applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack)
 
 
             elif card[:4] == "grap" :
@@ -265,13 +268,13 @@ class Ui_MainWindow(object):
 
                     choosendeck.pop(0)
                     otherdeck.pop(0)
-                    if choosendeck:
-                        self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
-                        self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
-                    else:
-                        self.deck1.setPixmap(QtGui.QPixmap("cards/empty.png"))
-                        self.deck2.setPixmap(QtGui.QPixmap("cards/empty.png"))
-                        self.pop_up_end()
+                if choosendeck:
+                    self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
+                    self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
+                else:
+                    self.deck1.setPixmap(QtGui.QPixmap("cards/empty.png"))
+                    self.deck2.setPixmap(QtGui.QPixmap("cards/empty.png"))
+                    self.pop_up_end(applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack)
 
             elif card[:4] == "stra" :
                 if len(strawberrystack) == 5 :
@@ -284,13 +287,13 @@ class Ui_MainWindow(object):
 
                     choosendeck.pop(0)
                     otherdeck.pop(0)
-                    if choosendeck:
-                        self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
-                        self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
-                    else:
-                        self.deck1.setPixmap(QtGui.QPixmap("cards/empty.png"))
-                        self.deck2.setPixmap(QtGui.QPixmap("cards/empty.png"))
-                        self.pop_up_end()
+                if choosendeck:
+                    self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
+                    self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
+                else:
+                    self.deck1.setPixmap(QtGui.QPixmap("cards/empty.png"))
+                    self.deck2.setPixmap(QtGui.QPixmap("cards/empty.png"))
+                    self.pop_up_end(applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack)
 
             elif card[:4] == "peac" :
                 if len(peachstack) == 5:
@@ -303,13 +306,13 @@ class Ui_MainWindow(object):
 
                     choosendeck.pop(0)
                     otherdeck.pop(0)
-                    if choosendeck:
-                        self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
-                        self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
-                    else:
-                        self.deck1.setPixmap(QtGui.QPixmap("cards/empty.png"))
-                        self.deck2.setPixmap(QtGui.QPixmap("cards/empty.png"))
-                        self.pop_up_end()
+                if choosendeck:
+                    self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
+                    self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
+                else:
+                    self.deck1.setPixmap(QtGui.QPixmap("cards/empty.png"))
+                    self.deck2.setPixmap(QtGui.QPixmap("cards/empty.png"))
+                    self.pop_up_end(applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack)
 
             elif card[:4] == "plum" :
                 if len(plumstack) == 5:
@@ -322,13 +325,13 @@ class Ui_MainWindow(object):
 
                     choosendeck.pop(0)
                     otherdeck.pop(0)
-                    if choosendeck:
-                        self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
-                        self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
-                    else:
-                        self.deck1.setPixmap(QtGui.QPixmap("cards/empty.png"))
-                        self.deck2.setPixmap(QtGui.QPixmap("cards/empty.png"))
-                        self.pop_up_end()
+                if choosendeck:
+                    self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
+                    self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
+                else:
+                    self.deck1.setPixmap(QtGui.QPixmap("cards/empty.png"))
+                    self.deck2.setPixmap(QtGui.QPixmap("cards/empty.png"))
+                    self.pop_up_end(applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack)
 
             elif card[:4] == "pear" :
                 if len(pearstack) == 5:
@@ -341,54 +344,34 @@ class Ui_MainWindow(object):
 
                     choosendeck.pop(0)
                     otherdeck.pop(0)
-                    if choosendeck:
-                        self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
-                        self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
-                    else:
-                        self.deck1.setPixmap(QtGui.QPixmap("cards/empty.png"))
-                        self.deck2.setPixmap(QtGui.QPixmap("cards/empty.png"))
-                        self.pop_up_end()
-
-            print(len(self.left_deck))
-
-        
+                if choosendeck:
+                    self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
+                    self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
+                else:
+                    self.deck1.setPixmap(QtGui.QPixmap("cards/empty.png"))
+                    self.deck2.setPixmap(QtGui.QPixmap("cards/empty.png"))
+                    self.pop_up_end(applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack)
 
 
-    def pop_up_end(self):
+    def pop_up_end(self, applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack):
         msg = QMessageBox()
         msg.setWindowTitle("Vége")
-        msg.setText("Elfogyott a paklikból a kártya. Nyomd meg az 'ok' gombot hogy megnézd az eredményt")
+        msg.setText("Elfogyott a paklikból a kártya. Nyomd meg az 'ok' gombot és nézd meg az eredményt")
         msg.setIcon(QMessageBox.Information)
         msg.setStandardButtons(QMessageBox.Ok)
 
         x = msg.exec_()
 
         if x == QMessageBox.Ok:
-            self.deck1.hide()
-            self.deck2.hide()
-            self.applelabel.hide()
-            self.grapeslabel.hide()
-            self.strawberrylabel.hide()
-            self.pearlabel.hide()
-            self.plumlabel.hide()
-            self.peachlabel.hide()
-            self.Button1.hide()
-            self.Button2.hide()
-            self.Button3.hide()
-            self.label_1.hide()
-            self.label_2.hide()
-            self.label_3.hide()
-            self.label_4.hide()
-            self.label_5.hide()
-            self.label_6.hide()
-            self.counter_label_1.hide()
-            self.counter_label_2.hide()
-            self.counter_label_3.hide()
-            self.counter_label_4.hide()
-            self.counter_label_5.hide()
-            self.counter_label_6.hide()
 
-    def discard(self, choosendeck, otherdeck):
+            ui = score.Ui_ScoreWindow()
+            ui.setupUi(MainWindow)
+
+
+
+            ui.scoreloadup(applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack)
+
+    def discard(self, choosendeck, otherdeck, applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack):
         print(len(choosendeck))
 
         
@@ -401,14 +384,14 @@ class Ui_MainWindow(object):
         else:
             self.deck1.setPixmap(QtGui.QPixmap("cards/empty.png"))
             self.deck2.setPixmap(QtGui.QPixmap("cards/empty.png"))
-            self.pop_up_end()
+            self.pop_up_end(applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack)
 
 
 
     def pop_up_message(self, fruit,  choosendeck, otherdeck, stack, card, fruitlabel, counter_label):
         msg = QMessageBox()
         msg.setWindowTitle("Válassz okosan")
-        msg.setText(fruit + " gyümölcs nem választható mert a pakliban van már 5 lap")
+        msg.setText(fruit + " gyümölcsből van már a pakliban 5 lap")
         msg.setIcon(QMessageBox.Information)
         msg.setStandardButtons(QMessageBox.Retry|QMessageBox.Ok)
         msg.setDefaultButton(QMessageBox.Ok)
@@ -426,9 +409,14 @@ class Ui_MainWindow(object):
 
             choosendeck.pop(0)
             otherdeck.pop(0)
-
-            self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
-            self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
+            """
+            if len(choosendeck) != 0:
+                self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
+                self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
+            else:
+                self.deck1.setPixmap(QtGui.QPixmap("cards/empty.png"))
+                self.deck2.setPixmap(QtGui.QPixmap("cards/empty.png"))
+                self.pop_up_end(applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack)"""
 
  
 
@@ -444,8 +432,3 @@ if __name__ == "__main__":
     sys.exit(app.exec_())
 
 
-    
-
-    
-
-    allstack = [applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack]
