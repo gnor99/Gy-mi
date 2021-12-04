@@ -12,17 +12,12 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QMovie
 
+
+
 import sys
 
 
 class Ui_ScoreWindow(object):
-    """def __init__(self):
-        super(Ui_ScoreWindow, self).__init__()
-#        self.ui=Ui_MainWindow()
-        self.ui.setupUi(self)"""
-
-
-
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -75,21 +70,40 @@ class Ui_ScoreWindow(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(5, item)
         MainWindow.setCentralWidget(self.centralwidget)
+
+
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1147, 22))
         self.menubar.setObjectName("menubar")
+
         MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.menuuj = QtWidgets.QMenu(self.menubar)
+        self.menuuj.setObjectName("menuuj")
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+        self.actionnew = QtWidgets.QAction(MainWindow)
+        self.actionnew.setObjectName("actionnew")
+        self.menuuj.addAction(self.actionnew)
+        self.menubar.addAction(self.menuuj.menuAction())
+
+
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
+        self.actionnew.triggered.connect(lambda: self.click(MainWindow))
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
 
 
-        
+    def click(self, MainWindow):
+        from project import Ui_MainWindow
+        ui = Ui_MainWindow()
+        ui.setupUi(MainWindow)
 
 
     def retranslateUi(self, MainWindow):
@@ -124,6 +138,10 @@ class Ui_ScoreWindow(object):
         item.setText(_translate("MainWindow", "5"))
         item = self.tableWidget.horizontalHeaderItem(5)
         item.setText(_translate("MainWindow", "Pontszám"))
+
+        self.menuuj.setTitle(_translate("MainWindow", "Játék"))
+        self.actionnew.setText(_translate("MainWindow", "Új játék"))
+        self.actionnew.setShortcut(_translate("MainWindow", "Ctrl+N"))
 
     def scorecounter(self, d):
         strd = str(d[1]) + str(d[2]) + str(d[3]) + str(d[4]) + str(d[5])

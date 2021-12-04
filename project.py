@@ -166,6 +166,8 @@ class Ui_MainWindow(object):
         self.Button3.setObjectName("Button3")
         self.Button3.clicked.connect(lambda: self.discard(self.left_deck, self.right_deck, applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack))
 
+
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1147, 22))
@@ -173,8 +175,17 @@ class Ui_MainWindow(object):
 
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.menuuj = QtWidgets.QMenu(self.menubar)
+        self.menuuj.setObjectName("menuuj")
+        MainWindow.setMenuBar(self.menubar)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        self.actionnew = QtWidgets.QAction(MainWindow)
+        self.actionnew.setObjectName("actionnew")
+        self.menuuj.addAction(self.actionnew)
+        self.menubar.addAction(self.menuuj.menuAction())
+
+        self.actionnew.triggered.connect(lambda: self.click(MainWindow))
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -200,6 +211,15 @@ class Ui_MainWindow(object):
         self.counter_label_4.setText(_translate("MainWindow", "Size of this deck is 0"))
         self.counter_label_5.setText(_translate("MainWindow", "Size of this deck is 0"))
         self.counter_label_6.setText(_translate("MainWindow", "Size of this deck is 0"))
+        self.menuuj.setTitle(_translate("MainWindow", "Játék"))
+        self.actionnew.setText(_translate("MainWindow", "Új játék"))
+        self.actionnew.setShortcut(_translate("MainWindow", "Ctrl+N"))
+
+    def click(self, MainWindow):
+        ui = Ui_MainWindow()
+        ui.setupUi(MainWindow)
+        
+
 
 
 
@@ -372,8 +392,6 @@ class Ui_MainWindow(object):
             ui.scoreloadup(applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack)
 
     def discard(self, choosendeck, otherdeck, applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack):
-        print(len(choosendeck))
-
         
         choosendeck.pop(0)
         otherdeck.pop(0)
@@ -430,5 +448,3 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
-
-
