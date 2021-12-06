@@ -20,6 +20,8 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1147, 754)
 
+        #létrehozom a gyümölcs tárolókat, amikben a kiválasztott kártyák lesznek
+
         applestack = [] 
         grapesstack = []
         strawberrystack = []
@@ -32,19 +34,23 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
 
-        self.deck1 = QtWidgets.QLabel(self.centralwidget)
+        #paklik
+
+        self.deck1 = QtWidgets.QLabel(self.centralwidget)  # baloldali pakli
         self.deck1.setGeometry(QtCore.QRect(180, 100, 151, 201))
         self.deck1.setText("")
         self.deck1.setPixmap(QtGui.QPixmap("cards/empty.png"))
         self.deck1.setScaledContents(True)
         self.deck1.setObjectName("deck1")
 
-        self.deck2 = QtWidgets.QLabel(self.centralwidget)
+        self.deck2 = QtWidgets.QLabel(self.centralwidget) #jobb oldali pakli
         self.deck2.setGeometry(QtCore.QRect(660, 90, 151, 201))
         self.deck2.setText("")
         self.deck2.setPixmap(QtGui.QPixmap("cards/empty.png"))
         self.deck2.setScaledContents(True)
         self.deck2.setObjectName("deck2")
+
+        #tárolók képe
 
         self.applelabel = QtWidgets.QLabel(self.centralwidget)
         self.applelabel.setGeometry(QtCore.QRect(30, 430, 151, 201))
@@ -88,7 +94,9 @@ class Ui_MainWindow(object):
         self.pearlabel.setScaledContents(True)
         self.pearlabel.setObjectName("pearlabel")
 
-        self.left_deck, self.right_deck =self.deckgenerator()
+        self.left_deck, self.right_deck =self.deckgenerator() # legenerálom a paklikat
+
+        #a tárolók feletti leírás
 
         self.label_1 = QtWidgets.QLabel(self.centralwidget)
         self.label_1.setGeometry(QtCore.QRect(80, 380, 67, 17))
@@ -120,6 +128,7 @@ class Ui_MainWindow(object):
         self.label_6.setAlignment(QtCore.Qt.AlignCenter)
         self.label_6.setObjectName("label_6")
 
+        # ez számolja hogy mennyi kártya van a tárolóban
 
         self.counter_label_1 = QtWidgets.QLabel(self.centralwidget)
         self.counter_label_1.setGeometry(QtCore.QRect(40, 650, 140, 17))
@@ -149,17 +158,23 @@ class Ui_MainWindow(object):
         self.counter_label_6 = QtWidgets.QLabel(self.centralwidget)
         self.counter_label_6.setGeometry(QtCore.QRect(935, 650, 140, 17))
         self.counter_label_6.setAlignment(QtCore.Qt.AlignCenter)
-        self.counter_label_6.setObjectName("counter_label_6")        
+        self.counter_label_6.setObjectName("counter_label_6")  
+
+        #baloldali paklihoz kiválasztó gomb      
 
         self.Button1 = QtWidgets.QPushButton(self.centralwidget)
         self.Button1.setGeometry(QtCore.QRect(200, 320, 151, 25))
         self.Button1.setObjectName("Button1")
         self.Button1.clicked.connect(lambda: self.putinstack(self.left_deck, self.right_deck, applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack))
 
+        #jobboldali paklihoz kiválasztó gomb
+
         self.Button2 = QtWidgets.QPushButton(self.centralwidget)
         self.Button2.setGeometry(QtCore.QRect(690, 320, 151, 25))
         self.Button2.setObjectName("Button2")
         self.Button2.clicked.connect(lambda: self.putinstack(self.right_deck, self.left_deck, applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack))
+
+        #mind a két pakliból eléget egy-egy lapot
 
         self.Button3 = QtWidgets.QPushButton(self.centralwidget)
         self.Button3.setGeometry(QtCore.QRect(450, 320, 151, 25))
@@ -172,6 +187,8 @@ class Ui_MainWindow(object):
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1147, 22))
         self.menubar.setObjectName("menubar")
+
+        #menüsáv
 
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -194,37 +211,40 @@ class Ui_MainWindow(object):
 
 
     def retranslateUi(self, MainWindow):
+
+        #Itt csak a kiírt szövegek vannak
+
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label_1.setText(_translate("MainWindow", "Apple"))
-        self.label_2.setText(_translate("MainWindow", "Peach"))
-        self.label_3.setText(_translate("MainWindow", "Grapes"))
-        self.label_4.setText(_translate("MainWindow", "Strawberry"))
-        self.label_5.setText(_translate("MainWindow", "Plum"))
-        self.label_6.setText(_translate("MainWindow", "Pear"))
-        self.Button1.setText(_translate("MainWindow", "Draw from this deck"))
-        self.Button2.setText(_translate("MainWindow", "Draw from this deck"))
-        self.Button3.setText(_translate("MainWindow", "Discard both card"))
-        self.counter_label_1.setText(_translate("MainWindow", "Size of this deck is 0"))
-        self.counter_label_2.setText(_translate("MainWindow", "Size of this deck is 0"))
-        self.counter_label_3.setText(_translate("MainWindow", "Size of this deck is 0"))
-        self.counter_label_4.setText(_translate("MainWindow", "Size of this deck is 0"))
-        self.counter_label_5.setText(_translate("MainWindow", "Size of this deck is 0"))
-        self.counter_label_6.setText(_translate("MainWindow", "Size of this deck is 0"))
+        self.label_1.setText(_translate("MainWindow", "Alma"))
+        self.label_2.setText(_translate("MainWindow", "Barack"))
+        self.label_3.setText(_translate("MainWindow", "Szőlő"))
+        self.label_4.setText(_translate("MainWindow", "Eper"))
+        self.label_5.setText(_translate("MainWindow", "Szilva"))
+        self.label_6.setText(_translate("MainWindow", "Körte"))
+        self.Button1.setText(_translate("MainWindow", "Húzz ebből a pakliból"))
+        self.Button2.setText(_translate("MainWindow", "Húzz ebből a pakliból"))
+        self.Button3.setText(_translate("MainWindow", "Dobd el mind két kártyát"))
+        self.counter_label_1.setText(_translate("MainWindow", "A pakli mérete 0"))
+        self.counter_label_2.setText(_translate("MainWindow", "A pakli mérete 0"))
+        self.counter_label_3.setText(_translate("MainWindow", "A pakli mérete 0"))
+        self.counter_label_4.setText(_translate("MainWindow", "A pakli mérete 0"))
+        self.counter_label_5.setText(_translate("MainWindow", "A pakli mérete 0"))
+        self.counter_label_6.setText(_translate("MainWindow", "A pakli mérete 0"))
         self.menuuj.setTitle(_translate("MainWindow", "Játék"))
         self.actionnew.setText(_translate("MainWindow", "Új játék"))
         self.actionnew.setShortcut(_translate("MainWindow", "Ctrl+N"))
 
     def click(self, MainWindow):
+
+        #Az új játék gomb triggerelt eljárás
+
         ui = Ui_MainWindow()
         ui.setupUi(MainWindow)
         
 
 
-
-
     def deckgenerator(self):
-
         fruits = ['apple','grapes', 'strawberry', 'peach', 'plum', 'pear'] #ennyi gyümölcs van
 
         left_deck = []
@@ -243,6 +263,8 @@ class Ui_MainWindow(object):
         for i in range(40): #ketté szedjük a paklit
             right_deck.append(left_deck.pop(0)) 
 
+        #Ez a kettő átrakja a húzópaklinak a felső lapjait az aktuálisra
+
         self.deck1.setPixmap(QtGui.QPixmap("cards/" +  left_deck[0] +".png"))
         self.deck2.setPixmap(QtGui.QPixmap("cards/" +  right_deck[0] +".png"))
 
@@ -257,7 +279,7 @@ class Ui_MainWindow(object):
             card = choosendeck[0]
 
             if card[:4] == "appl" :
-                
+
                 if len(applestack) == 5 :
                     self.pop_up_message("Alma", choosendeck, otherdeck, applestack, card, self.applelabel, self.counter_label_1)
 
@@ -268,7 +290,9 @@ class Ui_MainWindow(object):
                     
                     choosendeck.pop(0)
                     otherdeck.pop(0)
+
                 if choosendeck:
+                    #ez a feltétel azért kell mert van olyan eset hogy pont akkor akarja a felhasználó a hatodik gyümölcsöt belerakni a tárolóba mikor már kiürültek a paklik
                     self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
                     self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
                 else:
@@ -288,6 +312,7 @@ class Ui_MainWindow(object):
 
                     choosendeck.pop(0)
                     otherdeck.pop(0)
+
                 if choosendeck:
                     self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
                     self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
@@ -307,6 +332,7 @@ class Ui_MainWindow(object):
 
                     choosendeck.pop(0)
                     otherdeck.pop(0)
+
                 if choosendeck:
                     self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
                     self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
@@ -326,6 +352,7 @@ class Ui_MainWindow(object):
 
                     choosendeck.pop(0)
                     otherdeck.pop(0)
+
                 if choosendeck:
                     self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
                     self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
@@ -345,6 +372,7 @@ class Ui_MainWindow(object):
 
                     choosendeck.pop(0)
                     otherdeck.pop(0)
+
                 if choosendeck:
                     self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
                     self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
@@ -364,6 +392,7 @@ class Ui_MainWindow(object):
 
                     choosendeck.pop(0)
                     otherdeck.pop(0)
+
                 if choosendeck:
                     self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
                     self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
@@ -374,6 +403,9 @@ class Ui_MainWindow(object):
 
 
     def pop_up_end(self, applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack):
+
+        #Mikor kifogytak a lapok akkor felugrik egy pop up üzenet hogy erről tályékoztassa a felhasználót
+
         msg = QMessageBox()
         msg.setWindowTitle("Vége")
         msg.setText("Elfogyott a paklikból a kártya. Nyomd meg az 'ok' gombot és nézd meg az eredményt")
@@ -383,16 +415,15 @@ class Ui_MainWindow(object):
         x = msg.exec_()
 
         if x == QMessageBox.Ok:
-
+            #Itt betölti a játék végi kiértékelőt
             ui = score.Ui_ScoreWindow()
             ui.setupUi(MainWindow)
-
-
-
             ui.scoreloadup(applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack)
 
     def discard(self, choosendeck, otherdeck, applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack):
         
+        #Mind a két pakliból kidob egy-egy lapot
+
         choosendeck.pop(0)
         otherdeck.pop(0)
 
@@ -407,6 +438,9 @@ class Ui_MainWindow(object):
 
 
     def pop_up_message(self, fruit,  choosendeck, otherdeck, stack, card, fruitlabel, counter_label):
+
+        #Ez a pop-up üzenet figyelmeztet ha több mint 5 lapot akar belerakni a játékos egy tároloba
+
         msg = QMessageBox()
         msg.setWindowTitle("Válassz okosan")
         msg.setText(fruit + " gyümölcsből van már a pakliban 5 lap")
@@ -427,14 +461,7 @@ class Ui_MainWindow(object):
 
             choosendeck.pop(0)
             otherdeck.pop(0)
-            """
-            if len(choosendeck) != 0:
-                self.deck1.setPixmap(QtGui.QPixmap("cards/" +  self.left_deck[0] +".png"))
-                self.deck2.setPixmap(QtGui.QPixmap("cards/" +  self.right_deck[0] +".png"))
-            else:
-                self.deck1.setPixmap(QtGui.QPixmap("cards/empty.png"))
-                self.deck2.setPixmap(QtGui.QPixmap("cards/empty.png"))
-                self.pop_up_end(applestack, grapesstack, strawberrystack, peachstack, plumstack, pearstack)"""
+
 
  
 
